@@ -2,7 +2,7 @@
 Summary:	Drupal Smarty theme engine
 Name:		drupal-themeengine-%{modname}
 Version:	4.6.0
-Release:	0.3
+Release:	0.9
 Epoch:		0
 License:	GPL v2
 Group:		Applications/WWW
@@ -40,6 +40,12 @@ install plugins/*.php $RPM_BUILD_ROOT%{_enginedir}/%{modname}/plugins
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%preun
+if [ "$1" = "0" ]; then
+	# nuke cache
+	rm -f %{_cachedir}/%{modname}/*.php
+fi
 
 %files
 %defattr(644,root,root,755)
