@@ -3,14 +3,14 @@ Summary:	Drupal Smarty theme engine
 Summary(pl):	Silnik motywów Drupala Smarty
 Name:		drupal-themeengine-%{engine}
 Version:	4.6.0
-Release:	0.10
+Release:	0.11
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://drupal.org/files/projects/%{engine}-%{version}.tar.gz
 # Source0-md5:	d5fe39d4861f7e59cabddb1bc0f28c56
 Patch0:		%{name}-PLD.patch
 URL:		http://drupal.org/node/19248
-Requires:	Smarty >= 2.6.2
+Requires:	Smarty >= 2.6.10-4
 Requires:	drupal >= 4.6.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
