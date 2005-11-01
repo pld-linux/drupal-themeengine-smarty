@@ -5,7 +5,7 @@
  // Smarty Drupal engine, by default, expects a smarty installation in ./libs
  if (!class_exists('Smarty')) {  // prevent redeclaration
 -  require_once realpath('themes/engines/smarty/libs/Smarty.class.php');
-+  require_once 'Smarty/Smarty.class.php';
++  require_once '/usr/share/php/Smarty/Smarty.class.php';
  }
  
  class SmartyTemplate extends Smarty {
