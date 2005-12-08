@@ -1,22 +1,63 @@
---- ./smartytemplate.php~	2005-07-27 16:12:05.000000000 +0300
-+++ ./smartytemplate.php	2005-08-19 11:56:47.000000000 +0300
-@@ -17,7 +17,7 @@
+--- ./smartytemplate.php~	2005-12-08 19:48:57.000000000 +0200
++++ ./smartytemplate.php	2005-12-08 19:51:56.000000000 +0200
+@@ -20,7 +20,7 @@
  
  // Smarty Drupal engine, by default, expects a smarty installation in ./libs
  if (!class_exists('Smarty')) {  // prevent redeclaration
--  require_once realpath('themes/engines/smarty/libs/Smarty.class.php');
+-  require_once realpath(ENGINE_PATH.'/libs/Smarty.class.php');
 +  require_once '/usr/share/php/Smarty/Smarty.class.php';
  }
  
  class SmartyTemplate extends Smarty {
---- ./smartytemplate.php~	2005-08-19 11:59:05.000000000 +0300
-+++ ./smartytemplate.php	2005-08-19 12:01:43.000000000 +0300
-@@ -38,7 +38,7 @@
- 
-     $this->vars = & $this->_tpl_vars;
-     $this->template_dir = $path;
--    $this->compile_dir  = $path.'/templates_c';
-+    $this->compile_dir  = '/var/cache/drupal/smarty';
-     $this->config_dir   = $path.'/configs';
-     $this->plugins_dir  = array(realpath('themes/engines/smarty/plugins'), $path.'/plugins', 'plugins');
+@@ -116,14 +116,7 @@
+    * If unable to create it will stop execution and direct user to permissions setup
+    */
+   function _get_compile_dir($path) {
+-    $dir = ENGINE_PATH.'/templates_c/'.substr(strrchr($path, '/'), 1);
+-    if (!file_exists($dir)) {
+-      if (!@mkdir($dir)) {
+-        _test_permissions(true);
+-        exit;
+-      }
+-    }    
+-    return $dir;
++	return '/var/cache/drupal/smarty';
    }
+ 
+ }
+--- ./common.php~	2005-08-21 23:06:23.000000000 +0300
++++ ./common.php	2005-12-08 19:53:36.000000000 +0200
+@@ -20,7 +20,7 @@
+  * by the web server process.
+  */
+ function _test_permissions($plainhtml = false) {
+-  $path = ENGINE_PATH.'/templates_c';
++  $path = '/var/cache/drupal/smarty';
+   $_readable = !is_readable($path);
+   $_writable = !is_writable($path);
+   $_retval = $_readable | ($_writable * 2);
+@@ -30,7 +30,7 @@
+     $_problems .= $_readable ? ' OR writable' : 'writable';
+   }
+ 
+-  $_message = t("Smarty Permissions Error: templates_c directory is not <strong> %problems </strong> by the web server process.<br />
++  $_message = t("Smarty Permissions Error: templates cache directory is not <strong> %problems </strong> by the web server process.<br />
+     You <strong>must</strong> resolve this issue before you begin to use a Smarty-based theme.
+     See <a href=\"http://drupal.org/project/smarty\">drupal.org/project/smarty</a> for instructions.", array('%problems' => $_problems));
+ 
+===================================================================
+RCS file: /cvs/drupal/contributions/theme-engines/smarty/smarty.engine,v
+retrieving revision 1.7
+retrieving revision 1.7.2.1
+diff -u -r1.7 -r1.7.2.1
+--- ./smarty.engine	2005/08/21 20:06:23	1.7
++++ ./smarty.engine	2005/12/02 06:22:32	1.7.2.1
+@@ -67,7 +67,7 @@
+     return call_user_func('_smarty_' . $hook, $vars, $file);
+   }
+   elseif (function_exists('_smarty_default')) {
+-    return call_user_func('_smarty_default', $hook, $vars, $file);
++    return call_user_func('_smarty_default', $vars, $hook, $file);
+   }
+ 
+ }
