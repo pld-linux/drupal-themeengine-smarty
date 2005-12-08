@@ -9,7 +9,7 @@ Group:		Applications/WWW
 Source0:	http://drupal.org/files/projects/%{engine}-%{version}.tar.gz
 # Source0-md5:	6ed32c070c57d20c5568d9d0f85b533a
 Patch0:		%{name}-PLD.patch
-URL:		http://drupal.org/node/13812
+URL:		http://drupal.org/project/smarty
 Requires:	Smarty >= 2.6.10-4
 Requires:	drupal >= 4.6.0
 BuildArch:	noarch
