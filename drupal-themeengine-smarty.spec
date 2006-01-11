@@ -3,7 +3,7 @@ Summary:	Drupal Smarty theme engine
 Summary(pl):	Silnik motywów Drupala Smarty
 Name:		drupal-themeengine-%{engine}
 Version:	4.6.0
-Release:	0.13
+Release:	0.15
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://drupal.org/files/projects/%{engine}-%{version}.tar.gz
@@ -40,7 +40,7 @@ rm -f LICENSE.txt # GPL v2
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_enginedir}/%{engine}/plugins,%{_cachedir}/%{engine}}
+install -d $RPM_BUILD_ROOT{%{_enginedir}/%{engine}/plugins,%{_cachedir}/%{engine}/smarty}
 
 install *.tpl $RPM_BUILD_ROOT%{_enginedir}/%{engine}
 install *.engine *.php $RPM_BUILD_ROOT%{_enginedir}/%{engine}
@@ -53,10 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 if [ "$1" = "0" ]; then
 	# nuke cache
 	rm -f %{_cachedir}/%{engine}/*.php
+	rm -f %{_cachedir}/%{engine}/smarty/*.php
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc *.txt
 %{_enginedir}/%{engine}
-%dir %attr(775,root,http) %{_cachedir}/%{engine}
+%dir %attr(770,root,http) %{_cachedir}/%{engine}
+%dir %attr(770,root,http) %{_cachedir}/%{engine}/smarty
