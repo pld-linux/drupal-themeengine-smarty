@@ -21,7 +21,7 @@
 -      }
 -    }    
 -    return $dir;
-+	return '/var/cache/drupal/smarty';
++	return '/var/cache/drupal/smarty/' . substr(strrchr($path, '/'), 1);
    }
  
  }
