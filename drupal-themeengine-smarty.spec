@@ -1,6 +1,6 @@
 %define		engine smarty
 Summary:	Drupal Smarty theme engine
-Summary(pl.UTF-8):   Silnik motywów Drupala Smarty
+Summary(pl.UTF-8):	Silnik motywów Drupala Smarty
 Name:		drupal-themeengine-%{engine}
 Version:	4.6.0
 Release:	0.15
