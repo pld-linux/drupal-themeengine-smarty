@@ -1,6 +1,6 @@
 %define		engine smarty
 Summary:	Drupal Smarty theme engine
-Summary(pl):	Silnik motyw體 Drupala Smarty
+Summary(pl.UTF-8):   Silnik motyw贸w Drupala Smarty
 Name:		drupal-themeengine-%{engine}
 Version:	4.6.0
 Release:	0.15
@@ -26,11 +26,11 @@ Smarty Template Engine syntax.
 The 'default' template for this engine is box_grey_smarty, which is
 ported from the original box_grey theme.
 
-%description -l pl
-Ten silnik motyw體 umo縧iwia u縴wanie plik體 szablon體 napisanych przy
-u縴ciu sk砤dni silnika szablon體 Smarty.
+%description -l pl.UTF-8
+Ten silnik motyw贸w umo偶liwia u偶ywanie plik贸w szablon贸w napisanych przy
+u偶yciu sk艂adni silnika szablon贸w Smarty.
 
-"Domy秎nym" szablonem dla tego silnika jest box_grey_smarty, kt髍y
+"Domy艣lnym" szablonem dla tego silnika jest box_grey_smarty, kt贸ry
 jest sportowany z oryginalnego motywu box_grey.
 
 %prep
